@@ -43,7 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DB\Conexion.cs" />
-    <Compile Include="PEU\D_PEU_Listar.cs" />
+    <Compile Include="PEU\D_PEU_Persons.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />

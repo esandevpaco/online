@@ -1,4 +1,6 @@
-﻿using System;
+﻿using CapaEntidades.PEU;
+using CapaNegocio.PEU;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,8 +10,14 @@ namespace CapaPresentacion.Controllers
 {
     public class HomeController : Controller
     {
+        private N_PEU_Persons _Persons = new N_PEU_Persons();
+       
         public ActionResult Index()
         {
+
+            var lista = _Persons.N_listEmpleados();
+           
+
             return View();
         }
 

@@ -9,39 +9,33 @@ using System.Data.SqlClient;
 
 namespace CapaDatos.PEU
 {
-    public class D_PEU_Listar
+    public class D_PEU_Persons
     {
-        private SqlConnection cn;
-        private Conexion MiConexi = new Conexion();
-        private E_PEU_Persona persona = new E_PEU_Persona();
-        SqlCommand cmd = new SqlCommand();
-
-        public List<E_PEU_Persona> D_listEmpleados()
+       
+     public List<E_PEU_Persons> D_ListPerson()
         {
-            List<E_PEU_Persona> E_list = new List<E_PEU_Persona>();
+            List<E_PEU_Persons> E_list = new List<E_PEU_Persons>();
             try
             {
-                cn = new SqlConnection(ConfigurationManager.ConnectionStrings["desbaco"].ConnectionString);
-                cmd = new SqlCommand("listame", cn);
+                SqlConnection cn = new SqlConnection(ConfigurationManager.ConnectionStrings["desbaco"].ConnectionString);
+                SqlCommand cmd = new SqlCommand("listame", cn);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cn.Open();
                 SqlDataReader rdr = cmd.ExecuteReader();
                 while (rdr.Read())
                 {
-                    E_PEU_Persona e_PEU_Persona = new E_PEU_Persona();
-                    e_PEU_Persona.id = rdr["PersonaID"].ToString();
-                    e_PEU_Persona.Nombre = rdr["LastName"].ToString();
-                    E_list.Add(e_PEU_Persona);
+                    E_PEU_Persons e_PEU_Persons = new E_PEU_Persons();
+                    e_PEU_Persons.Nombre = rdr["LastName"].ToString();
+                    e_PEU_Persons.Apellido = rdr["FirstName"].ToString();
+                    E_list.Add(e_PEU_Persons);
+
                 }
             }
             catch (Exception e)
             {
                 throw new Exception("Errror al iniciar el sistema " + e);
             }
-            finally
-            {
-                cn.Close();
-            }
+
             return E_list;
         }
 
