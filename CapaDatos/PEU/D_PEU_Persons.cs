@@ -6,18 +6,20 @@ using System.Configuration;
 using System.Configuration.Provider;
 using System.Data;
 using System.Data.SqlClient;
+using System.Threading.Tasks;
 
 namespace CapaDatos.PEU
 {
     public class D_PEU_Persons
     {
-       
-         public List<E_PEU_Persons> D_ListPerson()
-         {
-            List<E_PEU_Persons> E_list = new List<E_PEU_Persons>();
+        private List<E_PEU_Persons> E_list = new List<E_PEU_Persons>();
+        private SqlConnection cn;
+        public async  Task <List<E_PEU_Persons>> D_ListPerson()
+        {
+            return await Task.Run(() => {
             try
             {
-                SqlConnection cn = new SqlConnection(ConfigurationManager.ConnectionStrings["desbaco"].ConnectionString);
+                cn = new SqlConnection(ConfigurationManager.ConnectionStrings["desbaco"].ConnectionString);
                 SqlCommand cmd = new SqlCommand("SP_APP_TESTEO_DETALLE", cn);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cn.Open();
@@ -35,8 +37,14 @@ namespace CapaDatos.PEU
             {
                 throw new Exception("Errror al iniciar el sistema " + e);
             }
+            finally
+            {
+                cn.Close();
+            }
 
             return E_list;
+
+            });
         }
 
     }
