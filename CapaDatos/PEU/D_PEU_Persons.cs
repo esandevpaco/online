@@ -2,11 +2,8 @@
 using CapaEntidades.PEU;
 using System;
 using System.Collections.Generic;
-using System.Configuration;
-using System.Configuration.Provider;
 using System.Data;
 using System.Data.SqlClient;
-using System.Runtime.Remoting.Messaging;
 using System.Threading.Tasks;
 
 namespace CapaDatos.PEU
@@ -15,14 +12,15 @@ namespace CapaDatos.PEU
     {
         private List<E_PEU_Persons> E_list = new List<E_PEU_Persons>();
         private SqlConnection connection;
-        SqlDataReader reader;
+        private SqlDataReader reader;
+        private Conexion con = new Conexion();
         public async  Task <List<E_PEU_Persons>> D_ListPerson()
         {       
             try
             {
                  return await Task.Run(() => {
 
-                     using (connection = new SqlConnection(ConfigurationManager.ConnectionStrings["desbaco"].ConnectionString))
+                     using (connection = new SqlConnection(con.connection()))
                      {
                          SqlCommand cmd = new SqlCommand("SP_APP_TESTEO_DETALLE", connection);
                          cmd.CommandType = CommandType.StoredProcedure;
