@@ -65,7 +65,6 @@ namespace CapaDatos.PEU
                 try
                 {
                     await connection.OpenAsync();
-
                     string insertQuery = "INSERT INTO Persons (LastName) VALUES (@Value1)";
                     using (SqlCommand insertCommand = new SqlCommand(insertQuery, connection))
                     {
