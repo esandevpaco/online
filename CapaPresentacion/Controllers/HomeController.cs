@@ -17,34 +17,21 @@ namespace CapaPresentacion.Controllers
         {
 
             var lista = await _Persons.N_listEmpleados();
-            ViewData["lista"] = lista;
+            ViewBag.dato = lista;
 
             return View();
         }
 
-        public JsonResult Estudiantes()
+
+         [HttpPost]
+        public async Task<JsonResult> Insert(string nombre)
         {
+            bool result = await _Persons.N_InsertarEmpleados(nombre);
 
-            var lista = _Persons.N_listEmpleados();
-            
-
-            return Json(lista,JsonRequestBehavior.AllowGet);
+            return Json(result);
+          
         }
 
 
-
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
-        }
     }
 }

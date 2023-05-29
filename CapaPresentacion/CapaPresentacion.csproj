@@ -120,6 +120,10 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Areas\Administrador\AdministradorAreaRegistration.cs" />
+    <Compile Include="Areas\Clientes\ClientesAreaRegistration.cs" />
+    <Compile Include="Areas\Finanzas\FinanzasAreaRegistration.cs" />
+    <Compile Include="Areas\Ventas\VentasAreaRegistration.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -137,6 +141,10 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Areas\Ventas\Views\web.config" />
+    <Content Include="Areas\Finanzas\Views\web.config" />
+    <Content Include="Areas\Administrador\Views\web.config" />
+    <Content Include="Areas\Clientes\Views\web.config" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -165,6 +173,18 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\Administrador\Controllers\" />
+    <Folder Include="Areas\Administrador\Data\" />
+    <Folder Include="Areas\Administrador\Views\Shared\" />
+    <Folder Include="Areas\Clientes\Controllers\" />
+    <Folder Include="Areas\Clientes\Data\" />
+    <Folder Include="Areas\Clientes\Views\Shared\" />
+    <Folder Include="Areas\Finanzas\Controllers\" />
+    <Folder Include="Areas\Finanzas\Data\" />
+    <Folder Include="Areas\Finanzas\Views\Shared\" />
+    <Folder Include="Areas\Ventas\Controllers\" />
+    <Folder Include="Areas\Ventas\Data\" />
+    <Folder Include="Areas\Ventas\Views\Shared\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

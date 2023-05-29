@@ -6,16 +6,72 @@
 
 
 <div class="container">
+	<br />
+	<form>
+		<div class="form-group">
+			<label for="exampleInputEmail1">Ingres Nombre</label>
+			<input type="text" class="form-control" id="nombre" placeholder="Nombre">
+		</div>
+		<div class="form-group">
+			<input type="hidden" class="form-control" id="id">
+		</div>
+		<button onclick="agregar();" type="button" class="btn btn-default">Enviar</button>
+	</form>
+	<br />
 
-	<div class="row">
-		<ul>
-
-			@foreach (var item in ( List<CapaEntidades.PEU.E_PEU_Persons>)ViewData["lista"])
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Id</th>
+				<th>Nombre</th>
+				<th>Opciones</th>
+			</tr>
+		</thead>
+		<tbody>
+			@foreach (var item in ViewBag.dato)
 			{
-				<li> @item.Apellido</li>
-
+				<tr>
+					<td>@item.id</td>
+					<td>@item.Nombre</td>
+					<td>
+						<div class="btn-group">
+							<button type="button" class="btn btn-primary">Opciones</button>
+							<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+								<span class="caret"></span>
+							</button>
+							<ul class="dropdown-menu" role="menu">
+								<li><a href="#">Eliminar</a></li>
+								<li><a href="#">Actualizar</a></li>
+							</ul>
+						</div>
+					</td>
+				</tr>
 			}
-		</ul>
-	</div>
+		</tbody>
+	</table>
+
+
 
 </div>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
+<script>
+	$(document).ready(function () {
+
+	});
+
+
+
+	function agregar() {
+		let nombre = $("#nombre").val(); 
+		$.ajax({
+			url: '@Url.Action("Insert", "Home")',
+			type: 'post',
+			data: {
+				nombre: nombre
+			},
+			success: function (response) {
+				console.log(response);
+			}
+		});  
+	}
+</script>
